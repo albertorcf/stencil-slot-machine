@@ -9,53 +9,43 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface MyComponent {
-    /**
-    * The first name
-    */
-    'first': string;
-    /**
-    * The last name
-    */
-    'last': string;
-    /**
-    * The middle name
-    */
-    'middle': string;
+  interface SlotImage {
+    'src': string;
+  }
+  interface SlotMachine {
+    'spin': () => Promise<void>;
   }
 }
 
 declare global {
 
 
-  interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
-  var HTMLMyComponentElement: {
-    prototype: HTMLMyComponentElement;
-    new (): HTMLMyComponentElement;
+  interface HTMLSlotImageElement extends Components.SlotImage, HTMLStencilElement {}
+  var HTMLSlotImageElement: {
+    prototype: HTMLSlotImageElement;
+    new (): HTMLSlotImageElement;
+  };
+
+  interface HTMLSlotMachineElement extends Components.SlotMachine, HTMLStencilElement {}
+  var HTMLSlotMachineElement: {
+    prototype: HTMLSlotMachineElement;
+    new (): HTMLSlotMachineElement;
   };
   interface HTMLElementTagNameMap {
-    'my-component': HTMLMyComponentElement;
+    'slot-image': HTMLSlotImageElement;
+    'slot-machine': HTMLSlotMachineElement;
   }
 }
 
 declare namespace LocalJSX {
-  interface MyComponent extends JSXBase.HTMLAttributes<HTMLMyComponentElement> {
-    /**
-    * The first name
-    */
-    'first'?: string;
-    /**
-    * The last name
-    */
-    'last'?: string;
-    /**
-    * The middle name
-    */
-    'middle'?: string;
+  interface SlotImage {
+    'src'?: string;
   }
+  interface SlotMachine {}
 
   interface IntrinsicElements {
-    'my-component': MyComponent;
+    'slot-image': SlotImage;
+    'slot-machine': SlotMachine;
   }
 }
 
@@ -64,7 +54,10 @@ export { LocalJSX as JSX };
 
 declare module "@stencil/core" {
   export namespace JSX {
-    interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
+    interface IntrinsicElements {
+      'slot-image': LocalJSX.SlotImage & JSXBase.HTMLAttributes<HTMLSlotImageElement>;
+      'slot-machine': LocalJSX.SlotMachine & JSXBase.HTMLAttributes<HTMLSlotMachineElement>;
+    }
   }
 }
 

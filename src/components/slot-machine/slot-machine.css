@@ -1,0 +1,34 @@
+/*
+<slot-machine>
+  <div class="slot-machine">
+    <div class="images">
+      <slot-image src="assets/img/slot1.png">
+        <div class="image" style="background-image: url('assets/img/slot1.png'); background-size: cover;"></div>
+      </slot-image>
+      <slot-image src="assets/img/slot2.png">
+        <div class="image" style="background-image: url('assets/img/slot2.png'); background-size: cover;"></div>
+      </slot-image>
+      <slot-image src="assets/img/slot3.png">
+        <div class="image" style="background-image: url('assets/img/slot3.png'); background-size: cover;"></div>
+      </slot-image>
+      <slot-image src="assets/img/slot1.png">
+        <div class="image" style="background-image: url('assets/img/slot1.png'); background-size: cover;"></div>
+      </slot-image>
+    </div>
+  </div>
+</slot-machine>
+*/
+
+.slot-machine {
+  margin-top: 0;
+  font-size: 0;  /* to remove spaces between the images */
+  /* Comment the line below to see all images */
+  /*overflow: hidden;*/
+}
+
+.images {
+  /*border: 1px solid red;*/
+  transition-property: margin-top;
+  transition-duration: 1.2s;
+  transition-timing-function: linear;
+}

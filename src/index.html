@@ -10,8 +10,24 @@
 
 </head>
 <body>
+  <div class="container" style="border:2px solid black; width:100px; height: 100px; margin-top: 300px;">
+    <slot-machine>
+      <slot-image src="assets/img/slot1.png"></slot-image>
+      <slot-image src="assets/img/slot2.png"></slot-image>
+      <slot-image src="assets/img/slot3.png"></slot-image>
+    </slot-machine>
+  </div>
 
-  <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+  <div class="buttons" style="position: absolute; left: 120px; top: 300px;">
+    <button onClick="spin()">Spin</button>
+  </div>
 
+  <script>
+    const slotMachine = document.querySelector('slot-machine');
+
+    function spin() {
+      slotMachine.spin();
+    }
+  </script>
 </body>
 </html>
