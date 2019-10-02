@@ -11,7 +11,7 @@
 </head>
 <body>
   <div class="container" style="border:3px solid #555; width:100px; height:100px; padding: 2px;">
-    <slot-machine>
+    <slot-machine duration="1000">
       <slot-image src="assets/img/slot1.png"></slot-image>
       <slot-image src="assets/img/slot2.png"></slot-image>
       <slot-image src="assets/img/slot3.png"></slot-image>
@@ -19,7 +19,8 @@
   </div>
 
   <div class="buttons" style="position: absolute; top: 8px; right: 12px;">
-    <button onClick="spin()">Spin</button>
+    <button onClick="spin()">Spin</button><br/>
+    <button onClick="faster()">Faster</button>
   </div>
 
   <script>
@@ -27,6 +28,10 @@
 
     function spin() {
       slotMachine.spin();
+    }
+
+    function faster() {
+      slotMachine.duration = 500;
     }
   </script>
 </body>

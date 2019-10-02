@@ -1,4 +1,4 @@
-import { Component, Method, Element, h } from "@stencil/core";
+import { Component, Prop, Method, Element, Watch, h } from "@stencil/core";
 
 @Component({
   tag: "slot-machine",
@@ -7,18 +7,25 @@ import { Component, Method, Element, h } from "@stencil/core";
 export class SlotMachine {
   @Element() el: HTMLElement;
 
+  @Prop() duration: number = 1200;  // one spin duration in ms
+  
+  @Watch('duration')
+  setDurationHandler(newValue: number) {
+    this.setDuration(newValue);
+  }
+  
   @Method()
   async spin() {
     console.log('spin');
     this.images.addEventListener("transitionend", this.onComplete);
+    this.setDuration(this.duration);
     this.images.style.marginTop = '-300%';
   }
 
   machine: HTMLElement;
   images: HTMLElement;
   stopping = false;
-  duration = 1200;
-
+  
   componentDidLoad() {
     this.machine = this.el.querySelector('.slot-machine');
     this.images = this.el.querySelector('.images');
@@ -43,7 +50,7 @@ export class SlotMachine {
     this.images.style.transitionDuration = '0s';
     this.images.style.marginTop = '0px';
     setTimeout(() => {
-      this.images.style.transitionDuration = '1.2s';
+      this.setDuration(this.duration);
       this.images.style.marginTop = '-300%';
     }, 0);
   }

@@ -13,6 +13,7 @@ export namespace Components {
     'src': string;
   }
   interface SlotMachine {
+    'duration': number;
     'spin': () => Promise<void>;
   }
 }
@@ -41,7 +42,9 @@ declare namespace LocalJSX {
   interface SlotImage {
     'src'?: string;
   }
-  interface SlotMachine {}
+  interface SlotMachine {
+    'duration'?: number;
+  }
 
   interface IntrinsicElements {
     'slot-image': SlotImage;
