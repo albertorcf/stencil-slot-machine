@@ -33,8 +33,9 @@ export class SlotMachine {
     this.imageCount = this.images.children.length;
 
     let node = this.images.children[0].cloneNode();
+    //console.log('node=', node);
     this.images.appendChild(node);
-    console.log(this.el);
+    //console.log(this.el);
   }
 
   setDuration(ms: number) {
