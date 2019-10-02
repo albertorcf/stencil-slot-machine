@@ -6,7 +6,7 @@
   height: 100%;
 }
 
-.images {
+.slot1 {
   /*border: 1px solid red;*/
   transition-property: margin-top;
   transition-duration: 1.2s;
