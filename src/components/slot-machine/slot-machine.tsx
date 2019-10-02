@@ -24,11 +24,13 @@ export class SlotMachine {
 
   machine: HTMLElement;
   images: HTMLElement;
+  imageCount: number;
   stopping = false;
   
   componentDidLoad() {
     this.machine = this.el.querySelector('.slot-machine');
     this.images = this.el.querySelector('.images');
+    this.imageCount = this.images.children.length;
 
     let node = this.images.children[0].cloneNode(true);
     this.images.appendChild(node);
