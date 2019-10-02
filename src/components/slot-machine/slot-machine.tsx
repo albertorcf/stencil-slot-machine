@@ -10,28 +10,21 @@ export class SlotMachine {
   @Method()
   async spin() {
     console.log('spin');
-    const e: any = this.el.querySelector('.images');
-    e.style.marginTop = '-300%';
+    this.images.addEventListener("transitionend", this.onComplete);
+    this.images.style.marginTop = '-300%';
   }
 
-  machine: any;
-  images: any;
+  machine: HTMLElement;
+  images: HTMLElement;
   stopping = false;
-  duration = 1500;
+  duration = 1200;
 
   componentDidLoad() {
     this.machine = this.el.querySelector('.slot-machine');
     this.images = this.el.querySelector('.images');
 
-    let node = this.images.children[0].cloneNode();
+    let node = this.images.children[0].cloneNode(true);
     this.images.appendChild(node);
-
-    //image1.classList.add("image1");
-
-    //console.log('slot-machine=', this.el);
-    //console.log('this.machine=', this.machine);
-    //console.log('images=', this.images.children);
-    //console.log('parent=', this.el.parentNode);
   }
 
   setDuration(ms: number) {
@@ -47,7 +40,12 @@ export class SlotMachine {
 
   onComplete = () => {
     console.log('onComplete');
-    console.log(this.images.style.marginTop);
+    this.images.style.transitionDuration = '0s';
+    this.images.style.marginTop = '0px';
+    setTimeout(() => {
+      this.images.style.transitionDuration = '1.2s';
+      this.images.style.marginTop = '-300%';
+    }, 0);
   }
   
   render() {
