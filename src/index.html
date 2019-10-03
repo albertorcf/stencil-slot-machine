@@ -10,14 +10,28 @@
 
 </head>
 <body>
-  <div class="buttons">
+  <div class="buttons" style="margin: 4px;">
     <button onClick="spin()">Spin</button>
     <button onClick="faster()">Faster</button>
     <button onClick="stop()">Stop</button>
   </div>
 
-  <div class="container" style="border:3px solid #555; width:100px; height:100px; padding: 0; margin-top: 12px;">
-    <slot-machine duration="1000">
+  <div class="container" style="border:4px solid #800; width:100px; height:100px; padding: 0; float: left; margin:4px;">
+    <slot-machine id="machine1" duration="1000">
+      <slot-image src="assets/img/slot1.png"></slot-image>
+      <slot-image src="assets/img/slot2.png"></slot-image>
+      <slot-image src="assets/img/slot3.png"></slot-image>
+    </slot-machine>
+  </div>
+  <div class="container" style="border:4px solid #080; width:100px; height:100px; padding: 0; float: left; margin:4px;">
+    <slot-machine id="machine2" duration="900">
+      <slot-image src="assets/img/slot1.png"></slot-image>
+      <slot-image src="assets/img/slot2.png"></slot-image>
+      <slot-image src="assets/img/slot3.png"></slot-image>
+    </slot-machine>
+  </div>
+  <div class="container" style="border:4px solid #008; width:100px; height:100px; padding: 0; float: left; margin:4px;">
+    <slot-machine id="machine3" duration="800">
       <slot-image src="assets/img/slot1.png"></slot-image>
       <slot-image src="assets/img/slot2.png"></slot-image>
       <slot-image src="assets/img/slot3.png"></slot-image>
@@ -25,15 +39,31 @@
   </div>
 
   <script>
-    const slotMachine = document.querySelector('slot-machine');
+    const machine1 = document.querySelector('#machine1');
+    const machine2 = document.querySelector('#machine2');
+    const machine3 = document.querySelector('#machine3');
     function spin() {
-      slotMachine.spin();
+      machine1.spin();
+      setTimeout(() => {
+        machine2.spin();
+      }, 900);
+      setTimeout(() => {
+        machine3.spin();
+      }, 1800);
     }
     function faster() {
-      slotMachine.duration = 500;
+      machine1.duration = 750;
+      machine2.duration = 500;
+      machine3.duration = 250;
     }
     function stop() {
-      slotMachine.stop();
+      machine1.stop();
+      setTimeout(() => {
+        machine2.stop();
+      }, 900);
+      setTimeout(() => {
+        machine3.stop();
+      }, 1800);
     }
   </script>
 </body>
