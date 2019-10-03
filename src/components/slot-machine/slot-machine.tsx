@@ -8,7 +8,6 @@ export class SlotMachine {
   @Element() el: HTMLElement;
 
   @Prop() duration: number = 1200;  // one spin duration in ms
-  
   @Watch('duration')
   setDurationHandler(newValue: number) {
     this.setDuration(newValue);
@@ -16,10 +15,15 @@ export class SlotMachine {
   
   @Method()
   async spin() {
-    console.log('spin');
+    this.stopping = false;
     this.slot1.addEventListener("transitionend", this.onComplete);
-    this.setDuration(this.duration);
-    this.slot1.style.marginTop = '-300%';
+    this.setDuration(this.initDuration);
+    this.setMarginTop(this.imageCount);
+  }
+
+  @Method()
+  async stop() {
+    this.stopping = true;
   }
 
   machine: HTMLElement;
@@ -27,6 +31,7 @@ export class SlotMachine {
   imageCount: number;
   stopping = false;
   slot1: HTMLElement;
+  initDuration: number;
   
   componentDidLoad() {
     this.machine = this.el.querySelector('.slot-machine');
@@ -37,29 +42,34 @@ export class SlotMachine {
     this.slot1.classList.add('slot1');
 
     let node = this.images.children[0].cloneNode();
-    //console.log('node=', node);
     this.images.appendChild(node);
-    console.log(this.el);
+
+    this.initDuration = this.duration;
   }
 
   setDuration(ms: number) {
     this.duration = ms;
-    this.slot1.style.transitionDuration = (ms/1000).toFixed(3) + 's';
+    this.slot1.style.transitionDuration = (ms/1000).toFixed(4) + 's';
   }
   
   setMarginTop(index: number) {
-    console.log(index);
-    this.slot1.style.marginTop = `-${(index-1)*100}%`;
-    console.log(this.slot1.style.marginTop);
+    this.slot1.style.marginTop = `-${(index)*100}%`;
   }
 
   onComplete = () => {
-    console.log('onComplete');
     this.slot1.style.transitionDuration = '0s';
     this.slot1.style.marginTop = '0%';
     setTimeout(() => {
-      this.setDuration(this.duration);
-      this.slot1.style.marginTop = '-300%';
+      if (!this.stopping) {
+        this.setDuration(this.duration);
+        this.setMarginTop(this.imageCount);
+      } else {
+        this.slot1.removeEventListener("transitionend", this.onComplete);
+        let r = Math.floor(Math.random()*this.imageCount)+1; // random index between 1 and imgCount
+        console.log('r=',r);
+        this.setDuration((this.duration/this.imageCount)*(r-1));
+        this.setMarginTop(r-1);
+      }
     }, 0);
   }
   
