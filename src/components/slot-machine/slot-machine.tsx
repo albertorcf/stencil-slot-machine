@@ -46,10 +46,13 @@ export class SlotMachine {
     this.slot1 = this.images.children[0].querySelector('.image');
     this.slot1.classList.add('slot1');
 
-    let node = this.images.children[0].cloneNode();
+    // ToDo
+    let node = this.images.children[0].cloneNode(true);
     this.images.appendChild(node);
 
     this.initDuration = this.duration;
+
+    console.log(this.el);
   }
 
   setDuration(ms: number) {
