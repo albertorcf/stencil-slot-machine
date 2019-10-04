@@ -42,6 +42,7 @@
     const machine1 = document.querySelector('#machine1');
     const machine2 = document.querySelector('#machine2');
     const machine3 = document.querySelector('#machine3');
+
     function spin() {
       machine1.spin();
       setTimeout(() => {
@@ -51,19 +52,19 @@
         machine3.spin();
       }, 1800);
     }
+
     function faster() {
       machine1.duration = 750;
       machine2.duration = 500;
       machine3.duration = 250;
     }
+
     function stop() {
-      machine1.stop();
-      setTimeout(() => {
-        machine2.stop();
-      }, 900);
-      setTimeout(() => {
-        machine3.stop();
-      }, 1800);
+      let result = [];
+      machine1.stop(0)
+        .then(r => {result.push(r); return machine2.stop(800);})
+        .then(r => {result.push(r); return machine3.stop(800);})
+        .then(r => {result.push(r); console.log('result=', result)});
     }
   </script>
 </body>

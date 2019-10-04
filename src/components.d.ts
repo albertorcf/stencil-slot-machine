@@ -15,7 +15,7 @@ export namespace Components {
   interface SlotMachine {
     'duration': number;
     'spin': () => Promise<void>;
-    'stop': () => Promise<void>;
+    'stop': (ms: number) => Promise<number>;
   }
 }
 

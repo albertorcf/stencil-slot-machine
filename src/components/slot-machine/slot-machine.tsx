@@ -22,8 +22,11 @@ export class SlotMachine {
   }
 
   @Method()
-  async stop() {
-    this.stopping = true;
+  async stop(ms: number) {
+    setTimeout(() => {
+      this.stopping = true;
+    }, ms);
+    return new Promise<number>((resolve) => {this.resolve = resolve});
   }
 
   machine: HTMLElement;
@@ -32,6 +35,8 @@ export class SlotMachine {
   stopping = false;
   slot1: HTMLElement;
   initDuration: number;
+  stopPromise: Promise<number>;
+  resolve: Function;
   
   componentDidLoad() {
     this.machine = this.el.querySelector('.slot-machine');
@@ -67,6 +72,7 @@ export class SlotMachine {
         this.slot1.removeEventListener("transitionend", this.onComplete);
         let r = Math.floor(Math.random()*this.imageCount)+1; // random index between 1 and imgCount
         console.log('r=',r);
+        this.resolve(r);
         this.setDuration((this.duration/this.imageCount)*(r-1));
         this.setMarginTop(r-1);
       }
