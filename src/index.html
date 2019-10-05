@@ -8,6 +8,11 @@
   <script type="module" src="/build/stencil-slot-machine.esm.js"></script>
   <script nomodule src="/build/stencil-slot-machine.js"></script>
 
+  <style>
+    .container {
+      width:100px; height:100px; padding:4px; float:left; margin:6px; border-radius:18px;
+    }
+  </style>
 </head>
 <body>
   <div class="buttons" style="margin: 6px;">
@@ -17,21 +22,21 @@
     <span id="result" style="margin-left:10px;">Result=[]</span>
   </div>
 
-  <div class="container" style="border:4px solid #800; width:100px; height:100px; padding: 0; float: left; margin:6px;">
+  <div class="container" style="border:4px solid #800;">
     <slot-machine id="machine1" duration="1000">
       <slot-image src="assets/img/slot1.png"></slot-image>
       <slot-image src="assets/img/slot2.png"></slot-image>
       <slot-image src="assets/img/slot3.png"></slot-image>
     </slot-machine>
   </div>
-  <div class="container" style="border:4px solid #080; width:100px; height:100px; padding: 0; float: left; margin:6px;">
+  <div class="container" style="border:4px solid #080;">
     <slot-machine id="machine2" duration="900">
       <slot-image src="assets/img/slot1.png"></slot-image>
       <slot-image src="assets/img/slot2.png"></slot-image>
       <slot-image src="assets/img/slot3.png"></slot-image>
     </slot-machine>
   </div>
-  <div class="container" style="border:4px solid #008; width:100px; height:100px; padding: 0; float: left; margin:6px;">
+  <div class="container" style="border:4px solid #008;">
     <slot-machine id="machine3" duration="800">
       <slot-image src="assets/img/slot1.png"></slot-image>
       <slot-image src="assets/img/slot2.png"></slot-image>

@@ -48,6 +48,7 @@ export class SlotMachine {
 
     // ToDo
     let node = this.images.children[0].cloneNode(true);
+    console.log('node=', node);
     this.images.appendChild(node);
 
     this.initDuration = this.duration;
