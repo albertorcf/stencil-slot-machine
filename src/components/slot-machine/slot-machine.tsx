@@ -42,18 +42,20 @@ export class SlotMachine {
     this.machine = this.el.querySelector('.slot-machine');
     this.images = this.el.querySelector('.images');
     this.imageCount = this.images.children.length;
+    let children0 = this.images.children[0];
 
-    this.slot1 = this.images.children[0].querySelector('.image');
+    this.slot1 = this.images.querySelector('.image');
+    
+    // ToDo - using cloneNode(true) is generating another duplicated useless image at the end - Ok
+    //let node = this.images.children[0].cloneNode(true);
+    //this.images.appendChild(node);
+    let slot: HTMLElement = this.images.children[0].cloneNode(false) as HTMLElement;
+    slot.setAttribute('src', children0.children[0].children[0].getAttribute('src'));
+    this.images.appendChild(slot);
+
     this.slot1.classList.add('slot1');
-
-    // ToDo
-    let node = this.images.children[0].cloneNode(true);
-    console.log('node=', node);
-    this.images.appendChild(node);
-
     this.initDuration = this.duration;
-
-    console.log(this.el);
+    //console.log(this.el);
   }
 
   setDuration(ms: number) {
