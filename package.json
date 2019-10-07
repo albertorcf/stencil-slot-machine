@@ -1,6 +1,6 @@
 {
   "name": "stencil-slot-machine",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "A web component compiled with StencilJS to simulate a slot machine spin effect",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -28,5 +28,11 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/albertorcf/stencil-slot-machine.git"
-  }
+  },
+  "keywords": [
+    "slot machine",
+    "web component",
+    "stencil",
+    "stencilJS"
+  ]
 }
