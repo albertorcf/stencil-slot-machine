@@ -9,7 +9,7 @@
 <a href="https://www.npmjs.org/package/stencil-slot-machine">
   <img src="https://img.shields.io/npm/l/stencil-slot-machine" alt="License" />
 </a>
-<a href="https://www.npmjs.org/package/stencil-slot-machine">
+<a href="https://github.com/albertorcf/stencil-slot-machine">
   <img src="https://img.shields.io/github/stars/albertorcf/stencil-slot-machine?style=social" alt="GitHub" />
 </a>
 
