@@ -29,6 +29,8 @@ export class SlotMachine {
     return new Promise<number>((resolve) => {this.resolve = resolve});
   }
 
+  @Prop({mutable: true}) stopElement: any;
+
   machine: HTMLElement;
   images: HTMLElement;
   imageCount: number;
@@ -46,9 +48,6 @@ export class SlotMachine {
 
     this.slot1 = this.images.querySelector('.image');
     
-    // ToDo - using cloneNode(true) is generating another duplicated useless image at the end - Ok
-    //let node = this.images.children[0].cloneNode(true);
-    //this.images.appendChild(node);
     let slot: HTMLElement = this.images.children[0].cloneNode(false) as HTMLElement;
     slot.setAttribute('src', children0.children[0].children[0].getAttribute('src'));
     this.images.appendChild(slot);
@@ -78,7 +77,9 @@ export class SlotMachine {
         this.slot1.removeEventListener("transitionend", this.onComplete);
         let r = Math.floor(Math.random()*this.imageCount)+1; // random index between 1 and imgCount
         console.log('r=',r);
+        this.stopElement = this.images.children[r-1];
         this.resolve(r);
+        console.log(r, this.stopElement, this.stopElement.getAttribute('name'));
         this.setDuration((this.duration/this.imageCount)*(r-1));
         this.setMarginTop(r-1);
       }

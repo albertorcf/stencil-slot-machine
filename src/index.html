@@ -10,37 +10,37 @@
 
   <style>
     .container {
-      width:100px; height:100px; padding:4px; float:left; margin:6px; border-radius:18px;
+      width:100px; height:100px; padding:2px; float:left; margin:4px; border-radius:11px;
     }
   </style>
 </head>
 <body>
-  <div class="buttons" style="margin: 6px;">
+  <div class="buttons" style="margin: 4px;">
     <button onClick="spin()">Spin</button>
     <button onClick="faster()">Faster</button>
     <button onClick="stop()">Stop</button>
-    <span id="result" style="margin-left:10px;">Result=[]</span>
+    <span id="result" style="margin-left:4px;">Result=[]</span><span id="names">[]</span>
   </div>
 
   <div class="container" style="border:4px solid #800;">
     <slot-machine id="machine1" duration="1000">
-      <slot-image src="assets/img/slot1.png"></slot-image>
-      <slot-image src="assets/img/slot2.png"></slot-image>
-      <slot-image src="assets/img/slot3.png"></slot-image>
+      <slot-image src="assets/img/slot1.png" name="cherry"></slot-image>
+      <slot-image src="assets/img/slot2.png" name="orange"></slot-image>
+      <slot-image src="assets/img/slot3.png" name="grape" ></slot-image>
     </slot-machine>
   </div>
   <div class="container" style="border:4px solid #080;">
     <slot-machine id="machine2" duration="900">
-      <slot-image src="assets/img/slot1.png"></slot-image>
-      <slot-image src="assets/img/slot2.png"></slot-image>
-      <slot-image src="assets/img/slot3.png"></slot-image>
+      <slot-image src="assets/img/slot1.png" name="cherry"></slot-image>
+      <slot-image src="assets/img/slot2.png" name="orange"></slot-image>
+      <slot-image src="assets/img/slot3.png" name="grape" ></slot-image>
     </slot-machine>
   </div>
   <div class="container" style="border:4px solid #008;">
     <slot-machine id="machine3" duration="800">
-      <slot-image src="assets/img/slot1.png"></slot-image>
-      <slot-image src="assets/img/slot2.png"></slot-image>
-      <slot-image src="assets/img/slot3.png"></slot-image>
+      <slot-image src="assets/img/slot1.png" name="cherry"></slot-image>
+      <slot-image src="assets/img/slot2.png" name="orange"></slot-image>
+      <slot-image src="assets/img/slot3.png" name="grape" ></slot-image>
     </slot-machine>
   </div>
   
@@ -49,6 +49,7 @@
     const machine2 = document.querySelector('#machine2');
     const machine3 = document.querySelector('#machine3');
     const res = document.querySelector('#result');
+    const nam = document.querySelector('#names');
 
     function spin() {
       machine1.spin();
@@ -68,13 +69,25 @@
 
     function stop() {
       let result = [];
+      let names = [];
       machine1.stop(0)
-        .then(r => {result.push(r); return machine2.stop(800);})
-        .then(r => {result.push(r); return machine3.stop(800);})
+        .then(r => {
+          result.push(r); 
+          names.push(machine1.stopElement.getAttribute('name'));
+          return machine2.stop(800);
+        })
+        .then(r => {
+          result.push(r);
+          names.push(machine2.stopElement.getAttribute('name'));
+          return machine3.stop(800);
+        })
         .then(r => {
           result.push(r);
           console.log('result=', result);
+          names.push(machine3.stopElement.getAttribute('name'));
+          console.log('names=', names);
           res.innerHTML = 'Result=' + JSON.stringify(result);
+          nam.innerHTML = JSON.stringify(names).replace(/"/g, "");;
         });
     }
   </script>

@@ -16,6 +16,7 @@ export namespace Components {
     'duration': number;
     'spin': () => Promise<void>;
     'stop': (ms: number) => Promise<number>;
+    'stopElement': any;
   }
 }
 
@@ -45,6 +46,7 @@ declare namespace LocalJSX {
   }
   interface SlotMachine {
     'duration'?: number;
+    'stopElement'?: any;
   }
 
   interface IntrinsicElements {
