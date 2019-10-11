@@ -1,6 +1,6 @@
 {
   "name": "stencil-slot-machine",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A web component compiled with StencilJS to simulate a slot machine spin effect",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -22,7 +22,7 @@
     "generate": "stencil generate"
   },
   "devDependencies": {
-    "@stencil/core": "1.7.0"
+    "@stencil/core": "1.7.1"
   },
   "license": "MIT",
   "repository": {

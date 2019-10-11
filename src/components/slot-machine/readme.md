@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type     | Default |
-| ---------- | ---------- | ----------- | -------- | ------- |
-| `duration` | `duration` |             | `number` | `1200`  |
+| Property      | Attribute      | Description | Type     | Default     |
+| ------------- | -------------- | ----------- | -------- | ----------- |
+| `duration`    | `duration`     |             | `number` | `1200`      |
+| `stopElement` | `stop-element` |             | `any`    | `undefined` |
 
 
 ## Methods
